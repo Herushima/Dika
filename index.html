@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIKA – Sobat Sehat Medika | Klinik Medika Utama</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:    #1B3A5C;
+    --teal:    #1A7F8E;
+    --teal-lt: #E8F6F8;
+    --red:     #C0392B;
+    --gold:    #E8A020;
+    --white:   #FFFFFF;
+    --gray50:  #F8FAFB;
+    --gray100: #EEF2F5;
+    --gray300: #C8D2DC;
+    --gray500: #7A8A99;
+    --gray700: #3D4F60;
+    --text:    #1C2B3A;
+    --radius:  14px;
+    --shadow:  0 4px 24px rgba(27,58,92,.12);
+  }
+
+  html, body {
+    height: 100%; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--gray50); color: var(--text); -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    display: flex; flex-direction: column;
+    height: 100dvh; max-width: 480px; margin: 0 auto;
+    background: var(--white); box-shadow: var(--shadow); position: relative;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--navy); padding: 14px 18px 12px;
+    display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+  }
+  .header-logo {
+    width: 40px; height: 40px; background: var(--teal);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .header-logo svg { width: 22px; height: 22px; fill: white; }
+  .header-info { flex: 1; min-width: 0; }
+  .header-name {
+    font-size: 14px; font-weight: 700; color: var(--white);
+    letter-spacing: .2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .header-sub { font-size: 11px; color: rgba(255,255,255,.65); margin-top: 1px; }
+  .status-dot {
+    width: 8px; height: 8px; background: #2ECC71; border-radius: 50%;
+    margin-right: 5px; display: inline-block; animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+  /* MENU */
+  .menu-banner {
+    background: var(--teal-lt); border-bottom: 1px solid var(--gray300);
+    padding: 10px 14px; flex-shrink: 0;
+    overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .menu-banner::-webkit-scrollbar { display: none; }
+  .menu-row { display: flex; gap: 8px; width: max-content; }
+  .menu-chip {
+    background: var(--white); border: 1.5px solid var(--teal); color: var(--teal);
+    font-size: 11.5px; font-weight: 600; padding: 5px 12px; border-radius: 20px;
+    cursor: pointer; white-space: nowrap; transition: all .18s; user-select: none;
+  }
+  .menu-chip:hover { background: var(--teal); color: var(--white); }
+  .menu-chip.danger { border-color: var(--red); color: var(--red); }
+  .menu-chip.danger:hover { background: var(--red); color: var(--white); }
+  .menu-chip.warn { border-color: var(--gold); color: #8A5E00; }
+  .menu-chip.warn:hover { background: var(--gold); color: var(--white); }
+
+  /* CHAT */
+  .chat-area {
+    flex: 1; overflow-y: auto; padding: 16px 14px;
+    display: flex; flex-direction: column; gap: 10px; scroll-behavior: smooth;
+  }
+  .chat-area::-webkit-scrollbar { width: 4px; }
+  .chat-area::-webkit-scrollbar-thumb { background: var(--gray300); border-radius: 4px; }
+
+  .bubble-wrap { display: flex; }
+  .bubble-wrap.user { justify-content: flex-end; }
+  .bubble-wrap.bot  { justify-content: flex-start; }
+
+  .bubble {
+    max-width: 82%; padding: 10px 14px; border-radius: var(--radius);
+    font-size: 13.5px; line-height: 1.55; word-break: break-word;
+  }
+  .bubble.user { background: var(--navy); color: var(--white); border-bottom-right-radius: 4px; }
+  .bubble.bot  { background: var(--gray100); color: var(--text); border-bottom-left-radius: 4px; }
+  .bubble.bot b { color: var(--navy); }
+
+  .qr-wrap { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .qr-btn {
+    background: var(--white); border: 1.5px solid var(--teal); color: var(--teal);
+    font-size: 12px; font-weight: 600; padding: 5px 11px; border-radius: 20px;
+    cursor: pointer; transition: all .15s;
+  }
+  .qr-btn:hover { background: var(--teal); color: var(--white); }
+  .qr-btn.red { border-color: var(--red); color: var(--red); }
+  .qr-btn.red:hover { background: var(--red); color: var(--white); }
+  .qr-btn.gold { border-color: var(--gold); color: #8A5E00; }
+  .qr-btn.gold:hover { background: var(--gold); color: var(--white); }
+
+  .typing { display: flex; align-items: center; gap: 4px; padding: 12px 14px; }
+  .typing span {
+    width: 7px; height: 7px; background: var(--gray500);
+    border-radius: 50%; animation: bounce .9s infinite;
+  }
+  .typing span:nth-child(2) { animation-delay: .15s; }
+  .typing span:nth-child(3) { animation-delay: .3s; }
+  @keyframes bounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-6px)} }
+
+  .card-skrining {
+    background: var(--white); border: 1.5px solid var(--gray300);
+    border-radius: var(--radius); padding: 12px 14px; font-size: 13px; max-width: 92%;
+  }
+  .card-title { font-weight: 700; font-size: 13.5px; color: var(--navy); margin-bottom: 8px; }
+  .result-row {
+    display: flex; justify-content: space-between;
+    padding: 4px 0; border-bottom: 1px solid var(--gray100);
+  }
+  .result-row:last-of-type { border-bottom: none; }
+  .label-key { color: var(--gray500); font-size: 12px; }
+  .label-val { font-weight: 600; font-size: 12px; color: var(--gray700); }
+  .badge {
+    display: inline-block; padding: 3px 10px; border-radius: 20px;
+    font-size: 12px; font-weight: 700; margin-top: 8px;
+  }
+  .badge.green   { background: #D4EDDA; color: #155724; }
+  .badge.yellow  { background: #FFF3CD; color: #856404; }
+  .badge.orange  { background: #FFE4CC; color: #7B3B00; }
+  .badge.red     { background: #F8D7DA; color: #721C24; }
+  .badge.darkred { background: #C0392B; color: #FFFFFF; }
+
+  .date-divider {
+    text-align: center; font-size: 11px; color: var(--gray500); margin: 4px 0;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .date-divider::before, .date-divider::after { content:''; flex:1; height:1px; background:var(--gray300); }
+
+  /* INPUT */
+  .input-bar {
+    flex-shrink: 0; padding: 10px 12px 14px;
+    background: var(--white); border-top: 1px solid var(--gray100);
+    display: flex; align-items: flex-end; gap: 8px;
+  }
+  .input-bar textarea {
+    flex: 1; border: 1.5px solid var(--gray300); border-radius: 22px;
+    padding: 10px 16px; font-size: 13.5px; font-family: inherit;
+    resize: none; max-height: 120px; min-height: 44px; line-height: 1.4;
+    outline: none; transition: border-color .2s; background: var(--gray50); color: var(--text);
+  }
+  .input-bar textarea:focus { border-color: var(--teal); }
+  .input-bar textarea::placeholder { color: var(--gray500); }
+  .send-btn {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: var(--teal); color: white; border: none; border-radius: 50%;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background .2s, transform .1s;
+  }
+  .send-btn:hover { background: var(--navy); }
+  .send-btn:active { transform: scale(.93); }
+  .send-btn:disabled { background: var(--gray300); cursor: not-allowed; }
+  .send-btn svg { width: 20px; height: 20px; fill: white; }
+
+  .step-hint {
+    font-size: 11.5px; color: var(--teal); text-align: center;
+    padding: 4px 0 2px; font-weight: 600; flex-shrink: 0;
+  }
+  .footer-note {
+    text-align: center; font-size: 10.5px; color: var(--gray500);
+    padding: 0 12px 10px; flex-shrink: 0;
+  }
+
+  @media (min-width: 600px) {
+    .page { border-radius: 16px; margin: 20px auto; height: calc(100dvh - 40px); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="header-logo">
+      <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+    </div>
+    <div class="header-info">
+      <div class="header-name">DIKA – Sobat Sehat Medika</div>
+      <div class="header-sub"><span class="status-dot"></span>Asisten Virtual Klinik Medika Utama</div>
+    </div>
+  </div>
+
+  <div class="menu-banner">
+    <div class="menu-row">
+      <button class="menu-chip" onclick="sendQuick('Info Jadwal Dokter')">📅 Jadwal Dokter</button>
+      <button class="menu-chip" onclick="sendQuick('Info Tarif MCU')">💰 Tarif MCU</button>
+      <button class="menu-chip" onclick="sendQuick('Info Layanan Klinik')">🏥 Layanan</button>
+      <button class="menu-chip danger" onclick="startSkrining('stroke')">🧠 Risiko Stroke</button>
+      <button class="menu-chip danger" onclick="startSkrining('jantung')">❤️ Risiko Jantung</button>
+      <button class="menu-chip warn"   onclick="startSkrining('diabetes')">🩸 Risiko Diabetes</button>
+      <button class="menu-chip" onclick="sendQuick('Cara pendaftaran dan informasi BPJS')">📋 Pendaftaran</button>
+      <button class="menu-chip" onclick="sendQuick('Info harga kamar rawat inap')">🛏️ Kamar Inap</button>
+    </div>
+  </div>
+
+  <div class="chat-area" id="chatArea"></div>
+  <div class="step-hint" id="stepHint" style="display:none"></div>
+  <div class="input-bar">
+    <textarea id="msgInput" rows="1" placeholder="Ketik pertanyaan Anda..."
+      onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+    <button class="send-btn" id="sendBtn" onclick="handleSend()">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+  <div class="footer-note">DIKA memberikan informasi umum, bukan pengganti diagnosis dokter. © Klinik Medika Utama</div>
+</div>
+
+<script>
+// =============================================
+// ⚙️  KONFIGURASI
+// Ganti URL ini setelah deploy Cloudflare Worker
+// =============================================
+const WORKER_URL = 'GANTI_DENGAN_URL_CLOUDFLARE_WORKER_ANDA';
+// Contoh: 'https://klinik-medika-chat.namakamu.workers.dev'
+// =============================================
+
+let chatHistory = [];
+let skriningState = null;
+let isLoading = false;
+
+window.addEventListener('DOMContentLoaded', () => {
+  showWelcome();
+  document.getElementById('msgInput').focus();
+});
+
+function showWelcome() {
+  const jam = new Date().getHours();
+  const sapa = jam < 11 ? 'Selamat Pagi' : jam < 15 ? 'Selamat Siang' : jam < 18 ? 'Selamat Sore' : 'Selamat Malam';
+  addBotBubble(
+    `👋 <b>${sapa}!</b> Saya <b>DIKA</b> — Sobat Sehat Medika dari <b>Klinik Medika Utama</b>.<br><br>` +
+    `Saya siap membantu Anda tanya seputar jadwal, tarif, atau cek risiko kesehatan. Silakan ketik atau pilih menu di atas.<br><br>` +
+    `<b>Mulai dari sini:</b>`,
+    [
+      { label: '📅 Jadwal Poli Jantung', text: 'Jadwal Poli Jantung' },
+      { label: '💰 Biaya MCU?', text: 'Berapa biaya MCU?' },
+      { label: '❤️ Cek Risiko Jantung', fn: () => startSkrining('jantung'), cls: 'red' },
+      { label: '🩸 Cek Risiko Diabetes', fn: () => startSkrining('diabetes'), cls: 'gold' },
+    ]
+  );
+  addDateDivider();
+}
+
+// ── RENDERERS ─────────────────────────────────
+function addDateDivider() {
+  const d = document.createElement('div');
+  d.className = 'date-divider';
+  d.textContent = new Date().toLocaleDateString('id-ID', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+  document.getElementById('chatArea').appendChild(d);
+}
+
+function addUserBubble(text) {
+  const w = document.createElement('div');
+  w.className = 'bubble-wrap user';
+  w.innerHTML = `<div class="bubble user">${escHtml(text)}</div>`;
+  document.getElementById('chatArea').appendChild(w);
+  scrollDown();
+}
+
+function addBotBubble(html, qr = []) {
+  const w = document.createElement('div');
+  w.className = 'bubble-wrap bot';
+  let qrHtml = '';
+  if (qr.length) {
+    qrHtml = '<div class="qr-wrap">';
+    qr.forEach(q => {
+      const cls = q.cls ? ` ${q.cls}` : '';
+      if (q.fn) {
+        qrHtml += `<button class="qr-btn${cls}" onclick="(${q.fn.toString()})()">${q.label}</button>`;
+      } else {
+        qrHtml += `<button class="qr-btn${cls}" onclick="sendQuick(${JSON.stringify(q.text)})">${q.label}</button>`;
+      }
+    });
+    qrHtml += '</div>';
+  }
+  w.innerHTML = `<div class="bubble bot">${html}${qrHtml}</div>`;
+  document.getElementById('chatArea').appendChild(w);
+  scrollDown();
+}
+
+function addCard(html) {
+  const w = document.createElement('div');
+  w.className = 'bubble-wrap bot';
+  w.innerHTML = `<div class="card-skrining">${html}</div>`;
+  document.getElementById('chatArea').appendChild(w);
+  scrollDown();
+}
+
+function addTyping() {
+  const w = document.createElement('div');
+  w.className = 'bubble-wrap bot'; w.id = 'typingIndicator';
+  w.innerHTML = `<div class="bubble bot typing"><span></span><span></span><span></span></div>`;
+  document.getElementById('chatArea').appendChild(w);
+  scrollDown();
+}
+
+function removeTyping() {
+  const t = document.getElementById('typingIndicator');
+  if (t) t.remove();
+}
+
+function scrollDown() {
+  const ca = document.getElementById('chatArea');
+  setTimeout(() => { ca.scrollTop = ca.scrollHeight; }, 50);
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+}
+
+// ── INPUT ─────────────────────────────────────
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); }
+}
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+}
+async function handleSend() {
+  if (isLoading) return;
+  const inp = document.getElementById('msgInput');
+  const text = inp.value.trim();
+  if (!text) return;
+  inp.value = ''; inp.style.height = '';
+  addUserBubble(text);
+  if (skriningState) await handleSkriningStep(text);
+  else await callAI(text);
+}
+async function sendQuick(text) {
+  if (isLoading) return;
+  addUserBubble(text);
+  await callAI(text);
+}
+function setInput(on) {
+  document.getElementById('msgInput').disabled = !on;
+  document.getElementById('sendBtn').disabled  = !on;
+}
+
+// ── AI CALL ───────────────────────────────────
+async function callAI(userText) {
+  isLoading = true; setInput(false); addTyping();
+  chatHistory.push({ role: 'user', text: userText });
+  try {
+    const res = await fetch(WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: userText, history: chatHistory.slice(0, -1) })
+    });
+    const data = await res.json();
+    removeTyping();
+    if (data.error) {
+      addBotBubble(`⚠️ ${escHtml(data.error)}`);
+    } else {
+      chatHistory.push({ role: 'model', text: data.reply });
+      addBotBubble(data.reply);
+    }
+  } catch {
+    removeTyping();
+    addBotBubble('⚠️ Tidak dapat terhubung ke server. Periksa koneksi internet Anda.');
+  }
+  isLoading = false; setInput(true);
+  document.getElementById('msgInput').focus();
+}
+
+// ── SKRINING ──────────────────────────────────
+function startSkrining(type) {
+  if (isLoading) return;
+  skriningState = { type, step: 1, data: {} };
+  updateStepHint();
+  if (type === 'stroke') {
+    addBotBubble(
+      `🧠 <b>Kalkulator Risiko Stroke</b><br><small>(Framingham Stroke Risk Score)</small><br><br>` +
+      `<b>1/8. Berapa usia Anda?</b><br><small>Ketik angka, contoh: <b>55</b></small>`
+    );
+  } else if (type === 'jantung') {
+    addBotBubble(
+      `❤️ <b>Skor Kardiovaskular Jakarta</b><br><small>(Yayasan Jantung Indonesia)</small><br><br>` +
+      `<b>1/8. Jenis kelamin Anda?</b>`,
+      [{ label:'Pria', text:'pria' },{ label:'Wanita', text:'wanita' }]
+    );
+  } else if (type === 'diabetes') {
+    addBotBubble(
+      `🩸 <b>Skrining Risiko Diabetes</b><br><small>(FINDRISC Score)</small><br><br>` +
+      `<b>1/10. Berapa usia Anda?</b>`,
+      [
+        { label:'A. 18–44 thn', text:'a' },{ label:'B. 45–54 thn', text:'b' },
+        { label:'C. 55–64 thn', text:'c' },{ label:'D. ≥65 thn', text:'d' },
+      ]
+    );
+  }
+}
+
+function updateStepHint() {
+  const el = document.getElementById('stepHint');
+  if (!skriningState) { el.style.display = 'none'; return; }
+  const total = skriningState.type === 'diabetes' ? 10 : 8;
+  const nama  = { stroke:'Risiko Stroke', jantung:'Risiko Jantung', diabetes:'Risiko Diabetes' }[skriningState.type];
+  el.style.display = 'block';
+  el.textContent = `🔬 Skrining ${nama} – Langkah ${skriningState.step}/${total}  |  ketik "batal" untuk keluar`;
+}
+
+async function handleSkriningStep(teks) {
+  const tl = teks.toLowerCase().trim();
+  if (tl === 'batal') {
+    skriningState = null; updateStepHint();
+    addBotBubble('❌ Skrining dibatalkan. Ada yang bisa saya bantu lagi?'); return;
+  }
+  if (skriningState.type === 'stroke')   await stepStroke(teks, tl);
+  else if (skriningState.type === 'jantung')  await stepJantung(teks, tl);
+  else if (skriningState.type === 'diabetes') await stepDiabetes(teks, tl);
+}
+
+// helpers
+const isNum = v => !isNaN(v) && v.trim() !== '';
+const isYN  = v => v === 'ya' || v === 'tidak';
+const ynBtn = () => [{ label:'Ya', text:'ya', cls:'red' },{ label:'Tidak', text:'tidak' }];
+function err(msg, qr=[]) { addBotBubble('⚠️ ' + msg, qr); }
+function ask(msg, qr=[]) { updateStepHint(); addBotBubble(msg, qr); }
+function rowsHtml(arr) {
+  return arr.map(([k,v]) =>
+    `<div class="result-row"><span class="label-key">${k}</span><span class="label-val">${v}</span></div>`
+  ).join('');
+}
+
+// ── STROKE ────────────────────────────────────
+async function stepStroke(teks, tl) {
+  const s = skriningState;
+  if (s.step===1){ if(!isNum(teks)) return err('Masukkan <b>angka</b> usia. Contoh: <b>55</b>'); s.data.usia=parseInt(teks); s.step=2; return ask('<b>2/8. Tekanan darah sistolik (angka atas tensi)?</b><br><small>Contoh: <b>140</b></small>'); }
+  if (s.step===2){ if(!isNum(teks)) return err('Masukkan angka.'); s.data.sistolik=parseInt(teks); s.step=3; return ask('<b>3/8. Rutin minum obat darah tinggi?</b>',ynBtn()); }
+  if (s.step===3){ if(!isYN(tl)) return err('Jawab <b>ya</b> atau <b>tidak</b>.',ynBtn()); s.data.obat_tensi=tl; s.step=4; return ask('<b>4/8. Riwayat Diabetes?</b>',ynBtn()); }
+  if (s.step===4){ if(!isYN(tl)) return err('Jawab ya atau tidak.',ynBtn()); s.data.diabetes=tl; s.step=5; return ask('<b>5/8. Perokok aktif?</b>',ynBtn()); }
+  if (s.step===5){ if(!isYN(tl)) return err('Jawab ya atau tidak.',ynBtn()); s.data.merokok=tl; s.step=6; return ask('<b>6/8. Riwayat Penyakit Jantung Koroner?</b>',ynBtn()); }
+  if (s.step===6){ if(!isYN(tl)) return err('Jawab ya atau tidak.',ynBtn()); s.data.cvd=tl; s.step=7; return ask('<b>7/8. Riwayat Fibrilasi Atrium (detak tidak beraturan)?</b>',ynBtn()); }
+  if (s.step===7){ if(!isYN(tl)) return err('Jawab ya atau tidak.',ynBtn()); s.data.af=tl; s.step=8; return ask('<b>8/8. Riwayat pembengkakan bilik jantung kiri (LVH)?</b>',ynBtn()); }
+  if (s.step===8){
+    if(!isYN(tl)) return err('Jawab ya atau tidak.',ynBtn());
+    s.data.lvh=tl;
+    const d=s.data; let p=0;
+    if(d.usia>=55&&d.usia<=59)p+=1; else if(d.usia<=64)p+=2; else if(d.usia<=69)p+=3; else if(d.usia<=74)p+=4; else if(d.usia<=79)p+=5; else if(d.usia>=80)p+=10;
+    if(d.obat_tensi==='tidak'){if(d.sistolik>=120&&d.sistolik<=139)p+=1;else if(d.sistolik<=159)p+=2;else if(d.sistolik>=160)p+=3;}
+    else{if(d.sistolik>=120&&d.sistolik<=139)p+=2;else if(d.sistolik<=159)p+=3;else if(d.sistolik>=160)p+=4;}
+    if(d.diabetes==='ya')p+=2; if(d.merokok==='ya')p+=3; if(d.cvd==='ya')p+=4; if(d.af==='ya')p+=5; if(d.lvh==='ya')p+=4;
+    let persen,kat,bc;
+    if(p<=3){persen='3–4%';kat='Rendah';bc='green';}else if(p<=6){persen='5–7%';kat='Rendah–Sedang';bc='yellow';}
+    else if(p<=9){persen='8–13%';kat='Menengah';bc='orange';}else if(p<=12){persen='15–24%';kat='Tinggi';bc='red';}
+    else if(p<=15){persen='28–42%';kat='Sangat Tinggi';bc='darkred';}else{persen='>45%';kat='Kritis';bc='darkred';}
+    addCard(`<div class="card-title">🧠 Hasil Skrining Risiko Stroke</div>
+      ${rowsHtml([['Usia',d.usia+' thn'],['Sistolik',d.sistolik+' mmHg'],['Obat Tensi',d.obat_tensi.toUpperCase()],['Diabetes',d.diabetes.toUpperCase()],['Merokok',d.merokok.toUpperCase()],['Jantung Koroner',d.cvd.toUpperCase()],['Fibrilasi Atrium',d.af.toUpperCase()],['LVH',d.lvh.toUpperCase()]])}
+      <div style="margin-top:10px">${rowsHtml([['Total Poin',p+' poin'],['Estimasi Risiko 10 thn',persen]])}</div>
+      <span class="badge ${bc}">${kat}</span>
+      <div style="font-size:11px;color:var(--gray500);margin-top:6px">Framingham Stroke Risk Score. Bukan pengganti pemeriksaan medis.</div>`);
+    skriningState=null; updateStepHint();
+    addBotBubble('✅ Skrining selesai.<br><b>Poli Jantung – dr. Moh. Afies S., SpJP(K), MMRS</b><br>Senin–Jumat, 16.00–19.00 WIB',
+      [{ label:'📞 Info Pendaftaran', text:'Cara pendaftaran' }]);
+  }
+}
+
+// ── JANTUNG ───────────────────────────────────
+async function stepJantung(teks, tl) {
+  const s = skriningState;
+  if(s.step===1){if(tl!=='pria'&&tl!=='wanita')return err('Jawab <b>pria</b> atau <b>wanita</b>.',[{label:'Pria',text:'pria'},{label:'Wanita',text:'wanita'}]);s.data.gender=tl;s.step=2;return ask('<b>2/8. Usia Anda?</b><br><small>Contoh: <b>40</b></small>');}
+  if(s.step===2){if(!isNum(teks))return err('Masukkan angka.');s.data.usia=parseInt(teks);s.step=3;return ask('<b>3/8. Tekanan darah sistolik?</b><br><small>Contoh: <b>130</b></small>');}
+  if(s.step===3){if(!isNum(teks))return err('Masukkan angka.');s.data.sistolik=parseInt(teks);s.step=4;return ask('<b>4/8. Berat badan (kg)?</b><br><small>Contoh: <b>70</b></small>');}
+  if(s.step===4){if(!isNum(teks))return err('Masukkan angka.');s.data.bb=parseFloat(teks);s.step=5;return ask('<b>5/8. Tinggi badan (cm)?</b><br><small>Contoh: <b>165</b></small>');}
+  if(s.step===5){if(!isNum(teks))return err('Masukkan angka.');s.data.tb=parseFloat(teks);s.step=6;return ask('<b>6/8. Status merokok?</b>',[{label:'Tidak Merokok',text:'tidak'},{label:'Pernah Merokok',text:'bekas'},{label:'Merokok Aktif',text:'ya',cls:'red'}]);}
+  if(s.step===6){if(!['tidak','bekas','ya'].includes(tl))return err('Pilih: tidak / bekas / ya.');s.data.merokok=tl;s.step=7;return ask('<b>7/8. Memiliki Diabetes?</b>',ynBtn());}
+  if(s.step===7){if(!isYN(tl))return err('Jawab ya atau tidak.',ynBtn());s.data.diabetes=tl;s.step=8;return ask('<b>8/8. Tingkat aktivitas fisik?</b>',[{label:'Tidak Ada',text:'tidak ada',cls:'red'},{label:'Ringan',text:'ringan'},{label:'Sedang',text:'sedang'},{label:'Berat',text:'berat'}]);}
+  if(s.step===8){
+    if(!['tidak ada','ringan','sedang','berat'].includes(tl))return err('Pilih salah satu.');
+    s.data.aktivitas=tl;
+    const d=s.data;let p=0;
+    if(d.gender==='pria')p+=1;
+    if(d.usia<35)p+=-4;else if(d.usia<=39)p+=-3;else if(d.usia<=44)p+=-2;else if(d.usia<=49)p+=0;else if(d.usia<=54)p+=1;else if(d.usia<=59)p+=2;else p+=3;
+    if(d.sistolik<130)p+=0;else if(d.sistolik<=139)p+=1;else if(d.sistolik<=159)p+=2;else if(d.sistolik<=179)p+=3;else p+=4;
+    const tb=d.tb/100,imt=d.bb/(tb*tb);
+    if(imt>=26&&imt<30)p+=1;else if(imt>=30)p+=2;
+    if(d.merokok==='bekas')p+=3;else if(d.merokok==='ya')p+=4;
+    if(d.diabetes==='ya')p+=2;
+    if(d.aktivitas==='tidak ada')p+=2;else if(d.aktivitas==='ringan')p+=1;else if(d.aktivitas==='berat')p+=-3;
+    let kat,saran,bc;
+    if(p<=1){kat='Rendah';saran='Pertahankan gaya hidup sehat.';bc='green';}
+    else if(p<=4){kat='Sedang';saran='Perbaiki gaya hidup: olahraga, diet, stop merokok.';bc='yellow';}
+    else{kat='Berat';saran='Segera konsultasi ke Dokter Spesialis Jantung.';bc='red';}
+    const mLbl={tidak:'Tidak Merokok',bekas:'Pernah Merokok',ya:'Merokok Aktif'}[d.merokok];
+    const aLbl={'tidak ada':'Tidak Ada',ringan:'Ringan',sedang:'Sedang',berat:'Berat'}[d.aktivitas];
+    addCard(`<div class="card-title">❤️ Skor Kardiovaskular Jakarta</div>
+      ${rowsHtml([[d.gender==='pria'?'Pria':'Wanita',d.usia+' thn'],['Sistolik',d.sistolik+' mmHg'],['IMT',imt.toFixed(1)+' kg/m²'],['Merokok',mLbl],['Diabetes',d.diabetes.toUpperCase()],['Aktivitas',aLbl]])}
+      <div style="margin-top:10px">${rowsHtml([['Total Skor',p+' poin']])}</div>
+      <span class="badge ${bc}">${kat}</span>
+      <div style="font-size:12px;color:var(--gray700);margin-top:8px"><b>Saran:</b> ${saran}</div>
+      <div style="font-size:11px;color:var(--gray500);margin-top:6px">Yayasan Jantung Indonesia. Bukan pengganti pemeriksaan medis.</div>`);
+    skriningState=null;updateStepHint();
+    addBotBubble('✅ Skrining selesai.<br><b>Poli Jantung – dr. Moh. Afies S., SpJP(K), MMRS</b><br>Senin–Jumat, 16.00–19.00 WIB',
+      [{ label:'📞 Info Pendaftaran', text:'Cara pendaftaran' }]);
+  }
+}
+
+// ── DIABETES ──────────────────────────────────
+async function stepDiabetes(teks, tl) {
+  const s=skriningState;
+  if(s.step===1){if(!['a','b','c','d'].includes(tl))return err('Jawab A, B, C, atau D.',[{label:'A. 18–44',text:'a'},{label:'B. 45–54',text:'b'},{label:'C. 55–64',text:'c'},{label:'D. ≥65',text:'d'}]);s.data.usiaKat=tl;s.step=2;return ask('<b>2/10. Berat badan (kg)?</b><br><small>Contoh: <b>75</b></small>');}
+  if(s.step===2){if(!isNum(teks))return err('Masukkan angka.');s.data.bb=parseFloat(teks);s.step=3;return ask('<b>3/10. Tinggi badan (cm)?</b><br><small>Contoh: <b>170</b></small>');}
+  if(s.step===3){if(!isNum(teks))return err('Masukkan angka.');s.data.tb=parseFloat(teks);s.step=4;return ask('<b>4/10. Jenis kelamin?</b>',[{label:'Pria',text:'pria'},{label:'Wanita',text:'wanita'}]);}
+  if(s.step===4){if(tl!=='pria'&&tl!=='wanita')return err('Jawab pria atau wanita.',[{label:'Pria',text:'pria'},{label:'Wanita',text:'wanita'}]);s.data.gender=tl;s.step=5;return ask('<b>5/10. Lingkar pinggang (cm)?</b><br><small>Contoh: <b>90</b></small>');}
+  if(s.step===5){if(!isNum(teks))return err('Masukkan angka.');s.data.pinggang=parseFloat(teks);s.step=6;return ask('<b>6/10. Rutin aktivitas fisik ≥30 mnt/hari?</b>',ynBtn());}
+  if(s.step===6){if(!isYN(tl))return err('Jawab ya atau tidak.',ynBtn());s.data.fisik=tl;s.step=7;return ask('<b>7/10. Makan sayur & buah setiap hari?</b>',ynBtn());}
+  if(s.step===7){if(!isYN(tl))return err('Jawab ya atau tidak.',ynBtn());s.data.sayur=tl;s.step=8;return ask('<b>8/10. Rutin minum obat darah tinggi?</b>',ynBtn());}
+  if(s.step===8){if(!isYN(tl))return err('Jawab ya atau tidak.',ynBtn());s.data.tensi=tl;s.step=9;return ask('<b>9/10. Pernah gula darah ditemukan tinggi?</b>',ynBtn());}
+  if(s.step===9){if(!isYN(tl))return err('Jawab ya atau tidak.',ynBtn());s.data.gula=tl;s.step=10;return ask('<b>10/10. Riwayat keluarga dengan Diabetes?</b>',[{label:'A. Tidak ada',text:'a'},{label:'B. Kakek/Nenek/Paman',text:'b'},{label:'C. Orang Tua/Saudara',text:'c',cls:'red'}]);}
+  if(s.step===10){
+    if(!['a','b','c'].includes(tl))return err('Jawab A, B, atau C.');
+    s.data.keluarga=tl;
+    const d=s.data;let p=0;
+    if(d.usiaKat==='b')p+=2;else if(d.usiaKat==='c')p+=3;else if(d.usiaKat==='d')p+=4;
+    const tb=d.tb/100,bmi=d.bb/(tb*tb);
+    if(bmi>=25&&bmi<30)p+=1;else if(bmi>=30)p+=3;
+    if(d.gender==='pria'){if(d.pinggang>=94&&d.pinggang<=102)p+=3;else if(d.pinggang>102)p+=4;}
+    else{if(d.pinggang>=80&&d.pinggang<=88)p+=3;else if(d.pinggang>88)p+=4;}
+    if(d.fisik==='tidak')p+=2; if(d.sayur==='tidak')p+=1; if(d.tensi==='ya')p+=2;
+    if(d.gula==='ya')p+=5; if(d.keluarga==='b')p+=3;else if(d.keluarga==='c')p+=5;
+    let kat,peluang,saran,bc;
+    if(p<=14){kat='Rendah–Sedang';peluang='1–17%';saran='Skrining lanjutan belum dianjurkan saat ini.';bc='green';}
+    else if(p<=20){kat='Tinggi';peluang='33%';saran='Skrining lanjutan direkomendasikan setiap 3–5 tahun.';bc='yellow';}
+    else{kat='Sangat Tinggi';peluang='50%';saran='Skrining lanjutan direkomendasikan setiap tahun.';bc='red';}
+    const uLbl={a:'18–44 thn',b:'45–54 thn',c:'55–64 thn',d:'≥65 thn'}[d.usiaKat];
+    const kLbl={a:'Tidak Ada',b:'Kakek/Nenek/Paman',c:'Orang Tua/Saudara'}[d.keluarga];
+    addCard(`<div class="card-title">🩸 Hasil Skrining Risiko Diabetes</div>
+      ${rowsHtml([['Usia',uLbl],['IMT',bmi.toFixed(1)+' kg/m²'],['Lingkar Pinggang',d.pinggang+' cm'],['Aktivitas Fisik',d.fisik.toUpperCase()],['Konsumsi Sayur/Buah',d.sayur.toUpperCase()],['Obat Darah Tinggi',d.tensi.toUpperCase()],['Riwayat Gula Tinggi',d.gula.toUpperCase()],['Riwayat Keluarga',kLbl]])}
+      <div style="margin-top:10px">${rowsHtml([['Total Skor',p+' poin'],['Kemungkinan Diabetes (10 thn)',peluang]])}</div>
+      <span class="badge ${bc}">${kat}</span>
+      <div style="font-size:12px;color:var(--gray700);margin-top:8px"><b>Saran:</b> ${saran}</div>
+      <div style="font-size:11px;color:var(--gray500);margin-top:6px">FINDRISC Score. Bukan pengganti pemeriksaan medis.</div>`);
+    skriningState=null;updateStepHint();
+    addBotBubble('✅ Skrining selesai.<br><b>Poli Penyakit Dalam – dr. Anisatur Roifah, Sp.PD</b><br>Selasa, Kamis, Jumat  |  16.30–18.30 WIB',
+      [{ label:'📞 Info Pendaftaran', text:'Cara pendaftaran' }]);
+  }
+}
+</script>
+</body>
+</html>
