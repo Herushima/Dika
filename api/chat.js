@@ -52,40 +52,54 @@ ATURAN PENUTUP PERCAKAPAN:
 Jika pasien mengakhiri percakapan (misalnya membalas "sudah", "terima kasih", "oke", "makasih", atau "cukup"), balas dengan natural dan hangat, variasikan kalimatnya tiap kali — jangan pakai kalimat penutup yang itu-itu saja.
 
 DATA KLINIK (HANYA BERIKAN JIKA DITANYA):
-- Lokasi/Maps: Jl. Soekarno Hatta, Darungan, Pare, Kediri
-- Jadwal Poli Umum: Setiap hari buka (07.00 - 20.00 WIB). Hari Minggu dan tanggal Merah Tetap Buka
-- Jadwal Poli Jantung (dr. Moh. Afies S., SpJP(K), MMRS): Senin-Jumat (16.00 - 19.00 WIB)
-- Jadwal Poli Dalam (dr. Anisatur Roifah, Sp.PD): Selasa, Kamis, Jumat (16.30 - 18.30 WIB)
-- Jadwal Poli Anak (dr. Hermanto, Sp.A): Senin & Kamis (12.30-13.30), Selasa & Rabu (10.00-11.00)
+- Lokasi/Maps: Jl. Soekarno Hatta, Darungan, Pare, Kediri → https://share.google/7VXTEm5O0tzEAK8L9
+- Jadwal Poli Umum: Setiap hari buka (07.00–20.00 WIB). Hari Minggu dan tanggal Merah Tetap Buka.
+- Jadwal Poli Jantung (dr. Moh. Afies S., SpJP(K), MMRS): Senin–Jumat (16.00–19.00 WIB)
+- Jadwal Poli Penyakit Dalam (dr. Anisatur Roifah, Sp.PD): Selasa, Kamis, Jumat (16.30–18.30 WIB)
+- Jadwal Poli Anak (dr. Hermanto, Sp.A): Senin & Kamis (12.30–13.30) | Selasa & Rabu (10.00–11.00)
+- Jadwal Poli Saraf (dr. Sulistyono Yulius, Sp.S): Senin s/d Kamis (18.30–selesai)
+- Jadwal Poli Kandungan/Obgyn (dr. Diana Zakiyah Rahmah, SpOG, M.Ked.Klin): Selasa, Rabu & Jumat (Pagi 06.30–17.30 | Malam 19.00–21.00) | Sabtu By Request
 
 LAYANAN KLINIK MEDIKA UTAMA:
-UGD/IGD 24 Jam, Poli Jantung & Pembuluh Darah, Poli Penyakit Dalam, Poli Anak, Poli Umum, Laboratorium, Farmasi, Rawat Inap, Rawat Jalan, Medical Check Up, Echocardiography, Duplex Ultrasonography, Ankle Brachial Index, EKG, Radiologi, Treadmill Test, Rehabilitasi Jantung, ABPM Monitor (24-48 jam), Holter Monitor (ECG 24-48 jam), Ambulance.
+UGD/IGD 24 Jam (Dokter Jaga), Poli Spesialis Jantung & Pembuluh Darah, Poli Spesialis Penyakit Dalam, Poli Spesialis Anak, Poli Spesialis Saraf, Poli Spesialis Kandungan (Obgyn), Poli Umum, Laboratorium, Farmasi, Rawat Inap, Rawat Jalan, Medical Check Up, Echocardiography, Duplex Ultrasonography, Ankle Brachial Index (ABI), Electrocardiography (EKG), Radiologi, Treadmill Test (Exercise Stress Test), Rehabilitasi Jantung, ABPM Monitor (Monitor Tekanan Darah 24-48 jam), Holter Monitor (ECG 24-48 jam), Ambulance.
 
 PAKET MCU:
-1. MCU Dasar (Fisik, Darah Lengkap, Rontgen, EKG): Rp 380.000
-2. MCU Sederhana (+ Urine, Lipid, BUN/Creat, Asam Urat, GDA): Rp 845.000
-3. MCU Jantung Echo (Echo, Lipid, BUN/Creat, SGOT/SGPT, Rontgen, EKG): Rp 1.330.000
-4. MCU Jantung Treadmill (Treadmill, HbA1C, Lipid, BUN/Creat, Rontgen, EKG): Rp 1.280.000
-5. MCU Premium Jantung (Echo + Treadmill lengkap): Rp 1.820.000
+1. MCU Dasar – Rp 380.000
+   Pemeriksaan Fisik, Darah Lengkap, Foto Rontgen Dada, EKG
+
+2. MCU Sederhana – Rp 845.000
+   Pemeriksaan Fisik, Darah Lengkap, Urine Lengkap, Profil Lipid, BUN/Creatinin, Asam Urat, Gula Darah Acak, Foto Rontgen Dada, EKG
+
+3. MCU Jantung Echo – Rp 1.330.000
+   Pemeriksaan Fisik, Echocardiography, BUN/Creatinin, SGOT/SGPT, Profil Lipid, Foto Rontgen Dada, EKG
+
+4. MCU Jantung Treadmill – Rp 1.280.000
+   Pemeriksaan Fisik, Treadmill Test, HbA1C, BUN/Creatinin, Profil Lipid, Foto Rontgen Dada, EKG
+
+5. MCU Premium Jantung – Rp 1.820.000
+   Pemeriksaan Fisik, Echocardiography, Treadmill Test, BUN/Creatinin, SGOT/SGPT, Profil Lipid, Foto Rontgen Dada, EKG
 
 TARIF TINDAKAN:
 - Echocardiography: Rp 600.000
 - Treadmill Test: Rp 500.000
-- Holter (sudah termasuk kamar): Rp 1.000.000
+- Holter Monitor (sudah termasuk kamar): Rp 1.000.000
 - ABPM: Rp 550.000
-- Echo Duplex Ultrasound: Rp 750.000
+- Echo Duplex Ultrasound (DUS): Rp 750.000
+- Rehabilitasi Jantung: sesuai pemeriksaan awal dan kondisi pasien
 
-TARIF KAMAR RAWAT INAP (belum termasuk makan):
-- VVIP: Rp 250.000 (AC, TV LED, kamar mandi dalam, sofa bed, kulkas, water heater)
-- VIP: Rp 225.000 (AC, TV LED, kamar mandi dalam, sofa bed)
-- Kelas 1: Rp 150.000 (AC, kamar mandi dalam, sofa bed)
-- Kelas 2: Rp 120.000 (AC, kamar mandi dalam, 2 pasien/kamar)
-- Kelas 3: Rp 80.000 (AC, kamar mandi dalam, 3-4 pasien/kamar)
+TARIF KAMAR RAWAT INAP (sudah termasuk makan & diet pasien):
+- VVIP: Rp 350.000 → Bed, TV LED, AC, kamar mandi dalam, lemari, meja makan, sofa bed, coffee table, water heater, kulkas
+- VIP: Rp 300.000 → Bed, TV LED, AC, kamar mandi dalam, lemari, meja makan, sofa bed, coffee table
+- Kelas 1: Rp 250.000 → Bed, AC, kamar mandi dalam, lemari, meja makan, sofa bed, coffee table
+- Kelas 2: Rp 175.000 → 1 kamar 2 pasien, AC, kamar mandi dalam, lemari, meja makan, kursi penunggu
+- Kelas 3: Rp 125.000 → 1 kamar 3-4 pasien, AC, kamar mandi dalam, lemari, meja makan, kursi penunggu
 
-TARIF LAB (buka setiap hari 07.00-21.00):
-Darah Lengkap: 125rb | Widal: 65rb | SGOT/SGPT: 110rb | Fungsi Ginjal: 110rb | Tipoid: 50rb | HIV: 60rb | Profil Lipid: 255rb | Gula Darah: 15rb | Asam Urat: 15rb | Kolesterol: 30rb | HbA1c: 160rb | INR: 180rb | Troponin: 120rb | NS-1: 55rb | Dengue Fever: 50rb | Urine Lengkap: 60rb | Hormon Tiroid: 595rb | HCG: 30rb
+TARIF LAB (buka setiap hari termasuk Minggu & hari merah, jam 07.00–21.00):
+Darah Lengkap: Rp 125.000 | Widal: Rp 65.000 | Fungsi Hati (SGOT/SGPT): Rp 110.000 | Fungsi Ginjal (Creatinin/Ureum): Rp 110.000 | Tipoid: Rp 50.000 | HIV: Rp 60.000 | Profil Lipid: Rp 255.000 | Gula Darah: Rp 15.000 | Asam Urat: Rp 15.000 | Kolesterol: Rp 30.000 | HbA1c: Rp 160.000 | INR: Rp 180.000 | Troponin: Rp 120.000 | NS-1: Rp 55.000 | Dengue Fever: Rp 50.000 | Urine Lengkap: Rp 60.000 | Hormon Tiroid: Rp 595.000 | HCG: Rp 30.000
 
-SURAT BEBAS NARKOBA: Paket 3 Parameter: Rp 100.000 | Paket 6 Parameter: Rp 150.000
+SURAT KETERANGAN BEBAS NARKOBA:
+- Paket 3 Parameter (AMP, MOP, THC): Rp 100.000
+- Paket 6 Parameter (AMP, MET, THC, MOP, BZO, COC): Rp 150.000
 
 PENDAFTARAN:
 - Pasien Umum: Hubungi WhatsApp Admin 0822-1812-9966
@@ -128,7 +142,7 @@ export default async function handler(req, res) {
   };
 
   const apiKey = process.env.GEMINI_API_KEY;
-  const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${apiKey}`;
+  const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${apiKey}`;
 
   try {
     const geminiRes = await fetch(apiUrl, {
