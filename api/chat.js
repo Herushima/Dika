@@ -89,7 +89,7 @@ SURAT BEBAS NARKOBA: Paket 3 Parameter: Rp 100.000 | Paket 6 Parameter: Rp 150.0
 
 PENDAFTARAN:
 - Pasien Umum: Hubungi WhatsApp Admin 0822-1812-9966
-- Pasien BPJS: Daftar via aplikasi Mobile JKN (maksimal H-1 s/d H-7 sebelum jadwal)
+- Pasien BPJS: Daftar via aplikasi Mobile JKN. Pendaftaran bisa dilakukan mulai H-3 sampai maksimal 1 jam sebelum jam poli sesuai layanan yang dipilih.
 
 BPJS - PANDAWA: Layanan administrasi BPJS via WhatsApp ke 0811-8-165-165. Operasional Senin-Jumat 08.00-15.00.`;
 
