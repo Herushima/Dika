@@ -101,6 +101,119 @@ SURAT KETERANGAN BEBAS NARKOBA:
 - Paket 3 Parameter (AMP, MOP, THC): Rp 100.000
 - Paket 6 Parameter (AMP, MET, THC, MOP, BZO, COC): Rp 150.000
 
+TARIF LAYANAN
+TARIF FOTO RONGSEN KLINIK MEDIKA UTAMA		
+NO	PEMERIKSAAN PENUNJANG KILINIK MEDIKA UTAMA HARGA  
+1	Thorax PA	 	         Rp 185,000 
+2	Thorax Lat	 	         Rp 185,000 
+3	BOF (BNO/KUB)	 	      Rp 210,000 
+4	LLD	 		            Rp 185,000 
+5	Pelvias AP	 	         Rp 185,000 
+6	Pelvis/Acrum Lat	      Rp 185,000 
+7	Skull AP	 	            Rp 185,000 
+8	Skull Lat	 	         Rp 185,000 
+9	Waters	 		         Rp 185,000 
+10	Eiser Sin	 	         Rp 185,000 
+11	Towne	 		            Rp 185,000 
+12	Basis Cranii	 	      Rp 185,000 
+13	Nasale	 		         Rp 185,000 
+14	Orbita Dex	 	         Rp 185,000 
+15	Orbita Sin	 	         Rp 185,000 
+16	TMJ Dex.Open Mouth 	   Rp 185,000 
+17	TMJ Dex.Close Mouth 	   Rp 185,000 
+18	TMJ Sin.Open Mouth 	   Rp 185,000 
+19	TMJ Sin.Close Mouth 	   Rp 185,000 
+20	Mastroid Dex (AP/Lat)   Rp 210,000 
+21	Mastroid Sin (AP/Lat)	Rp 210,000 
+22	Manus Dex (AP/Lat)	   Rp 220,000 
+23	Manus Sin (AP/Lat)	   Rp 220,000 
+24	Wrist Dex (AP/Lat)	   Rp 210,000 
+25	Wrist Sin (AP/Lat)	   Rp 210,000 
+26	Antebra Dex (AP/Lat)	   Rp 210,000 
+27	Antebra Sin (AP/Lat)	   Rp 210,000 
+28	Cubiti Dex (AP/Lat)	   Rp 210,000 
+29	Cubiti Sin (AP/Lat)	   Rp 210,000 
+30	Humerus Dex (AP/Lat)	   Rp 210,000 
+31	Humerus Sin (AP/Lat)	   Rp 210,000 
+32	Bahu Dex (AP/Lat)	      Rp 210,000 
+33	Bahu Sin (AP/Lat)	      Rp 210,000 
+34	Clavicula Dex (AP/Lat)	Rp 210,000 
+35	Clavicula Sin (AP/Lat)	Rp 210,000 
+36	Pedis Dex (AP/Lat)	   Rp 210,000 
+37	Pedis Sin (AP/Lat)	   Rp 210,000 
+38	Ankle Dex (AP/Lat)	   Rp 210,000 
+39	Ankle Sin (AP/Lat)	   Rp 210,000 
+40	Calcaneus Dex (AP/Lat)	Rp 210,000 
+41	Calcaneus Sin (AP/Lat)	Rp 210,000 
+42	Cruis Dex (AP/Lat)	   Rp 210,000 
+43	Cruis Sin (AP/Lat)	   Rp 210,000 
+44	Genu Dex (AP/Lat)	      Rp 210,000 
+45	Genu Sin (AP/Lat)	      Rp 210,000 
+46	Femur Dex (AP/Lat)	   Rp 210,000 
+47	Femur Sin (AP/Lat)	   Rp 210,000 
+48	Caput Dex (AP/Lat)	   Rp 210,000 
+49	Caput Sin (AP/Lat)	   Rp 210,000 
+50	Cervikal AP	 	         Rp 185,000 
+51	Cervikal Lat	 	      Rp 185,000 
+52	Cervikal Obl.Dex	      Rp 185,000 
+53	Cervikal Obl.Sin 	      Rp 185,000 
+54	Thoracal Lat	 	      Rp 185,000 
+55	Thoracal Obl.Sin	      Rp 185,000 
+56	Lumbo Sacral AP	 	   Rp 185,000 
+57	Lumbo Sacral Lat	      Rp 185,000 
+58	Lumbo Obl.Dex	 	      Rp 185,000 
+59	Lumbo Obl.Sin	 	      Rp 185,000 
+60	Sacro Coccygeal AP	   Rp 185,000 
+61	Sacro Coccygeal Lat	   Rp 185,000 
+62	USG ABD. TOTAL 	 	   Rp 425,000 
+63	USG UPPER/LOWER/UROLOGI Rp 325,000
+
+TARIF POLI KANDUNGAN
+1. konsultasi SpOG 100.000
+2. Konsultasi dokter SpOG + USG 2D/ transvaginal 150.000
+3. Lepas IUD+ USG 300.000
+4. Lepas Pasang IUD 550.000
+5. Pasang IUD + USG 350.000
+6. USG 3 DIMENSI / 4 DIMENSI 300.000 ( FREE KONSULTASI )
+7. Rawat Luka poli SpOG 100.000
+
+NO	PEMERIKSAAN PENUNJANG KILINIK MEDIKA UTAMA HARGA
+TARIF LABORATORIUM KLINIK MEDIKA UTAMA		
+1	DARAH lENGKAP (DL)	 	 	               Rp 125,000 
+2	WIDAL SLIDE (4 PARAMETER)	               Rp 65,000 
+3	FUNGSI GINJAL (RFT) (CREA, UREA)          Rp 110,000 
+4	FUNGSI HATI (LFT) (SGOT,SGPT)	 	         Rp 110,000 
+5	PROFIL LIPID (CHOL TOT, HDL, LDL, TG)	   Rp 225,000 
+6	PAKET CEK (GDA,CHOL,AU)	                  Rp 45,000 
+7	GDA	                                    Rp 10,000 
+8	CHOL STIK	                              Rp 25,000 
+9	ASAM URAT STIK	                           Rp 10,000 
+10	TROPONIN	 			                        Rp 120,000 
+11	SERUM ELEKTROLIT	 		                  Rp 357,000 
+12	ALBUMIN	 				                     Rp 95,000 
+13	VDRL	 				                        Rp 25,000 
+14	APTT	 				                        Rp 160,000 
+15	D-DIMER	 				                     Rp 240,000 
+16	HbA1C	 				                        Rp 160,000 
+17	LED	 				                        Rp 50,000 
+18	BILLIRUBIN TOTAL	 		                  Rp 180,000 
+19	HS TROPONIN	 			                     Rp 275,000 
+20	INR	 				                        Rp 180,000 
+21	ALP	 				                        Rp 135,000 
+22	HIV (b20)	 			                     Rp 60,000 
+23	NT-proBNP	 			                     Rp 325,000 
+24	FESES LENGKAP	 			                  Rp 75,000 
+25	NS-1	 				                        Rp 55,000 
+26	DENGUE FEVER (IgG dan IgM)	 	            Rp 50,000 
+27	TYPHIDOT	 			                        Rp 50,000 
+28	TES NARKOBA 3 PARAMETER	 		            Rp 100,000 
+29	TES NARKOBA 6 PARAMETER	 		            Rp 150,000 
+30	TSH	 				                        Rp 80,000 
+31	FT4	 				                        Rp 110,000 
+32	HEPATITIS (HbsAg)	 		                  Rp 120,000 
+33	URIN LENGKAP (UL)	 		                  Rp 60,000 
+34	PROFIL LIPID (TG dan LDL)	 	            Rp 125,000
+
 PENDAFTARAN:
 - Pasien Umum: Hubungi WhatsApp Admin 0822-1812-9966
 - Pasien BPJS: Daftar via aplikasi Mobile JKN. Pendaftaran bisa dilakukan mulai H-3 sampai maksimal 1 jam sebelum jam poli sesuai layanan yang dipilih.
