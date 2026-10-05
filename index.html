@@ -259,6 +259,24 @@ html,body{
   white-space:nowrap;
 }
 .klinik-footer-wa svg{width:13px;height:13px;fill:#fff;flex-shrink:0}
+
+/* ── Info layanan (EECP / NIVA / Tarif / Kontak) ── */
+.info-card{max-width:88%}
+.info-lead{font-size:12.5px;color:var(--ink2);line-height:1.6;margin-bottom:10px}
+.info-sub{font-size:11px;font-weight:700;color:var(--teal2);text-transform:uppercase;letter-spacing:.5px;margin:12px 0 6px}
+.info-list{list-style:none;display:flex;flex-direction:column;gap:5px}
+.info-list li{position:relative;padding-left:18px;font-size:12.5px;line-height:1.5;color:var(--ink2)}
+.info-list li::before{content:"✓";position:absolute;left:0;top:0;color:var(--teal);font-weight:800}
+.info-num{display:grid;grid-template-columns:1fr 1fr;gap:5px 10px;counter-reset:n;list-style:none}
+.info-num li{counter-increment:n;position:relative;padding-left:22px;font-size:12px;line-height:1.4;color:var(--ink2)}
+.info-num li::before{content:counter(n);position:absolute;left:0;top:0;width:16px;height:16px;border-radius:50%;background:var(--teal-lt);color:var(--teal2);font-size:9.5px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.info-badge{display:inline-block;background:#FBF2DE;color:#8A6310;font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:12px;margin:2px 0 8px}
+.tarif-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:12.3px}
+.tarif-row:last-child{border-bottom:none}
+.tarif-row .k{color:var(--ink2)}
+.tarif-row .v{font-weight:700;color:var(--navy);white-space:nowrap}
+.info-link{color:var(--teal2);font-weight:600;text-decoration:none}
+@media(max-width:380px){.info-num{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -298,6 +316,23 @@ html,body{
       <button class="sb-item" data-action="quick" data-text="Info harga kamar rawat inap">
         <div class="sb-icon">🛏️</div>
         <div class="sb-item-text"><div class="sb-item-title">Kamar Inap</div><div class="sb-item-sub">Informasi kamar &amp; fasilitas</div></div>
+      </button>
+      <div class="sb-section-label" style="margin-top:4px">Layanan Unggulan</div>
+      <button class="sb-item" data-action="info" data-key="eecp" data-label="Terapi EECP">
+        <div class="sb-icon">💓</div>
+        <div class="sb-item-text"><div class="sb-item-title">Terapi EECP</div><div class="sb-item-sub">Bypass alami tanpa operasi</div></div>
+      </button>
+      <button class="sb-item" data-action="info" data-key="niva" data-label="Pemeriksaan NIVA">
+        <div class="sb-icon">🩺</div>
+        <div class="sb-item-text"><div class="sb-item-title">Pemeriksaan NIVA</div><div class="sb-item-sub">Skrining pembuluh darah</div></div>
+      </button>
+      <button class="sb-item" data-action="info" data-key="tarif" data-label="Tarif EECP &amp; NIVA">
+        <div class="sb-icon ig">💰</div>
+        <div class="sb-item-text"><div class="sb-item-title">Tarif EECP &amp; NIVA</div><div class="sb-item-sub">Rincian tarif &amp; paket sesi</div></div>
+      </button>
+      <button class="sb-item" data-action="info" data-key="kontak" data-label="Lokasi &amp; Kontak">
+        <div class="sb-icon">📍</div>
+        <div class="sb-item-text"><div class="sb-item-title">Lokasi &amp; Kontak</div><div class="sb-item-sub">Alamat, telepon, WhatsApp</div></div>
       </button>
       <div class="sb-section-label" style="margin-top:4px">Cek Risiko Kesehatan</div>
       <button class="sb-item danger" data-action="skrining" data-type="stroke">
@@ -440,12 +475,13 @@ function bindEvents(){
       if(a==='quick')sendQuick(el.dataset.text);
       else if(a==='skrining')startSkrining(el.dataset.type);
       else if(a==='daftar')startDaftar();
+      else if(a==='info')showInfo(el.dataset.key,el.dataset.label);
     });
   });
   // Mobile menu card clicks
   chatArea.addEventListener('click',(e)=>{
     const card=e.target.closest('.menu-card');
-    if(card){const a=card.dataset.action;if(a==='quick')sendQuick(card.dataset.text);else if(a==='skrining')startSkrining(card.dataset.type);else if(a==='daftar')startDaftar();return;}
+    if(card){const a=card.dataset.action;if(a==='quick')sendQuick(card.dataset.text);else if(a==='skrining')startSkrining(card.dataset.type);else if(a==='daftar')startDaftar();else if(a==='info')showInfo(card.dataset.key,card.dataset.label);return;}
     const btn=e.target.closest('.qr-btn');
     if(!btn)return;e.preventDefault();e.stopPropagation();
     if(btn.dataset.fnKey){const fn=window.__df[btn.dataset.fnKey];if(fn)fn();}
@@ -474,7 +510,7 @@ function showMobileWelcome(){
   chatArea.appendChild(w);
   const lbl=document.createElement('div');lbl.className='menu-label mobile-only';lbl.textContent='Mulai dari sini:';chatArea.appendChild(lbl);
   const grid=document.createElement('div');grid.className='menu-grid mobile-only';
-  grid.innerHTML='<div class="menu-card full primary" data-action="quick" data-text="Saya ingin konsultasi kesehatan"><div class="menu-icon">💬</div><div class="menu-card-text"><div class="menu-card-title">Konsultasi Kesehatan</div><div class="menu-card-sub">Tanya keluhan &amp; info kesehatan</div></div></div><div class="menu-card" data-action="quick" data-text="Info Jadwal Dokter"><div class="menu-icon">📅</div><div class="menu-card-text"><div class="menu-card-title">Jadwal Dokter</div><div class="menu-card-sub">Lihat jadwal praktik dokter</div></div></div><div class="menu-card" data-action="quick" data-text="Info Tarif MCU"><div class="menu-icon ig">💳</div><div class="menu-card-text"><div class="menu-card-title">Tarif MCU</div><div class="menu-card-sub">Info paket medical check up</div></div></div><div class="menu-card" data-action="quick" data-text="Info Layanan Klinik"><div class="menu-icon">🏥</div><div class="menu-card-text"><div class="menu-card-title">Layanan Klinik</div><div class="menu-card-sub">Informasi layanan kami</div></div></div><div class="menu-card" data-action="daftar"><div class="menu-icon ig">📋</div><div class="menu-card-text"><div class="menu-card-title">Pendaftaran</div><div class="menu-card-sub">Daftar berobat / reservasi</div></div></div><div class="menu-card" data-action="quick" data-text="Info harga kamar rawat inap"><div class="menu-icon">🛏️</div><div class="menu-card-text"><div class="menu-card-title">Kamar Inap</div><div class="menu-card-sub">Informasi kamar &amp; fasilitas</div></div></div><div class="menu-card danger" data-action="skrining" data-type="stroke"><div class="menu-icon ir">🧠</div><div class="menu-card-text"><div class="menu-card-title">Cek Risiko Stroke</div><div class="menu-card-sub">Evaluasi risiko stroke</div></div></div><div class="menu-card danger" data-action="skrining" data-type="jantung"><div class="menu-icon ir">❤️</div><div class="menu-card-text"><div class="menu-card-title">Cek Risiko Jantung</div><div class="menu-card-sub">Evaluasi risiko jantung</div></div></div><div class="menu-card warn full" data-action="skrining" data-type="diabetes"><div class="menu-icon ig">🩸</div><div class="menu-card-text"><div class="menu-card-title">Cek Risiko Diabetes</div><div class="menu-card-sub">Evaluasi risiko diabetes</div></div></div>';
+  grid.innerHTML='<div class="menu-card full primary" data-action="quick" data-text="Saya ingin konsultasi kesehatan"><div class="menu-icon">💬</div><div class="menu-card-text"><div class="menu-card-title">Konsultasi Kesehatan</div><div class="menu-card-sub">Tanya keluhan &amp; info kesehatan</div></div></div><div class="menu-card" data-action="quick" data-text="Info Jadwal Dokter"><div class="menu-icon">📅</div><div class="menu-card-text"><div class="menu-card-title">Jadwal Dokter</div><div class="menu-card-sub">Lihat jadwal praktik dokter</div></div></div><div class="menu-card" data-action="quick" data-text="Info Tarif MCU"><div class="menu-icon ig">💳</div><div class="menu-card-text"><div class="menu-card-title">Tarif MCU</div><div class="menu-card-sub">Info paket medical check up</div></div></div><div class="menu-card" data-action="quick" data-text="Info Layanan Klinik"><div class="menu-icon">🏥</div><div class="menu-card-text"><div class="menu-card-title">Layanan Klinik</div><div class="menu-card-sub">Informasi layanan kami</div></div></div><div class="menu-card" data-action="daftar"><div class="menu-icon ig">📋</div><div class="menu-card-text"><div class="menu-card-title">Pendaftaran</div><div class="menu-card-sub">Daftar berobat / reservasi</div></div></div><div class="menu-card" data-action="quick" data-text="Info harga kamar rawat inap"><div class="menu-icon">🛏️</div><div class="menu-card-text"><div class="menu-card-title">Kamar Inap</div><div class="menu-card-sub">Informasi kamar &amp; fasilitas</div></div></div><div class="menu-card" data-action="info" data-key="eecp" data-label="Terapi EECP"><div class="menu-icon">💓</div><div class="menu-card-text"><div class="menu-card-title">Terapi EECP</div><div class="menu-card-sub">Bypass alami tanpa operasi</div></div></div><div class="menu-card" data-action="info" data-key="niva" data-label="Pemeriksaan NIVA"><div class="menu-icon">🩺</div><div class="menu-card-text"><div class="menu-card-title">Pemeriksaan NIVA</div><div class="menu-card-sub">Skrining pembuluh darah</div></div></div><div class="menu-card" data-action="info" data-key="tarif" data-label="Tarif EECP &amp; NIVA"><div class="menu-icon ig">💰</div><div class="menu-card-text"><div class="menu-card-title">Tarif EECP &amp; NIVA</div><div class="menu-card-sub">Rincian tarif & paket</div></div></div><div class="menu-card" data-action="info" data-key="kontak" data-label="Lokasi &amp; Kontak"><div class="menu-icon">📍</div><div class="menu-card-text"><div class="menu-card-title">Lokasi &amp; Kontak</div><div class="menu-card-sub">Alamat, telepon, WhatsApp</div></div></div><div class="menu-card danger" data-action="skrining" data-type="stroke"><div class="menu-icon ir">🧠</div><div class="menu-card-text"><div class="menu-card-title">Cek Risiko Stroke</div><div class="menu-card-sub">Evaluasi risiko stroke</div></div></div><div class="menu-card danger" data-action="skrining" data-type="jantung"><div class="menu-icon ir">❤️</div><div class="menu-card-text"><div class="menu-card-title">Cek Risiko Jantung</div><div class="menu-card-sub">Evaluasi risiko jantung</div></div></div><div class="menu-card warn full" data-action="skrining" data-type="diabetes"><div class="menu-icon ig">🩸</div><div class="menu-card-text"><div class="menu-card-title">Cek Risiko Diabetes</div><div class="menu-card-sub">Evaluasi risiko diabetes</div></div></div>';
   chatArea.appendChild(grid);
 }
 
@@ -492,8 +528,8 @@ function removeTyping(){const t=document.getElementById('typingIndicator');if(t)
 function scrollDown(){requestAnimationFrame(()=>{chatArea.scrollTop=chatArea.scrollHeight;});}
 function escHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');}
 function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,110)+'px';}
-async function handleSend(){if(isLoading)return;const text=msgInput.value.trim();if(!text)return;msgInput.value='';msgInput.style.height='';addUserBubble(text);if(skriningState)await handleSkriningStep(text);else if(daftarState)handleDaftarStep(text);else await callAI(text);}
-async function sendQuick(text){if(isLoading)return;addUserBubble(text);if(skriningState)await handleSkriningStep(text);else if(daftarState)handleDaftarStep(text);else await callAI(text);}
+async function handleSend(){if(isLoading)return;const text=msgInput.value.trim();if(!text)return;msgInput.value='';msgInput.style.height='';addUserBubble(text);if(skriningState)await handleSkriningStep(text);else if(daftarState)handleDaftarStep(text);else if(!routeInfo(text))await callAI(text);}
+async function sendQuick(text){if(isLoading)return;addUserBubble(text);if(skriningState)await handleSkriningStep(text);else if(daftarState)handleDaftarStep(text);else if(!routeInfo(text))await callAI(text);}
 function setInputEnabled(on){msgInput.disabled=!on;sendBtn.disabled=!on;}
 async function callAI(userText){
   isLoading=true;setInputEnabled(false);addTyping();
@@ -922,6 +958,93 @@ function selesaiDaftar(){
   },400);
 }
 
+
+// ══════════════ INFO: EECP · NIVA · TARIF · KONTAK ══════════════
+const WA1='6285113118749', WA2='6282218129966';
+const li=a=>'<ul class="info-list">'+a.map(x=>'<li>'+x+'</li>').join('')+'</ul>';
+const tr=(k,v)=>'<div class="tarif-row"><span class="k">'+k+'</span><span class="v">'+v+'</span></div>';
+const navQR=(skip)=>[
+  {key:'eecp',label:'💓 Terapi EECP'},{key:'niva',label:'🩺 Pemeriksaan NIVA'},
+  {key:'tarif',label:'💰 Tarif'},{key:'kontak',label:'📍 Kontak'}
+].filter(x=>x.key!==skip).map(x=>({label:x.label,fn:()=>showInfo(x.key)}));
+const waQR=[{label:'💬 Tanya via WhatsApp',cls:'gold',fn:()=>window.open('https://wa.me/'+WA1+'?text='+encodeURIComponent('Halo, saya ingin bertanya tentang layanan EECP / NIVA di Klinik Medika Utama.'),'_blank')}];
+
+function routeInfo(text){
+  const t=text.toLowerCase();
+  let key=null;
+  if(/\bniva\b|non.?invasive vascular|vascular analyzer/.test(t))key=/tarif|harga|biaya|berapa/.test(t)?'tarif':'niva';
+  else if(/\beecp\b|counterpulsation|bypass alami/.test(t))key=/tarif|harga|biaya|berapa|paket/.test(t)?'tarif':'eecp';
+  if(!key)return false;
+  showInfo(key);return true;
+}
+
+function showInfo(key,label){
+  if(isLoading)return;
+  if(label)addUserBubble(label.replace(/&amp;/g,'&'));
+  skriningState=null;daftarState=null;updateStepHint();
+  if(key==='eecp')return infoEECP();
+  if(key==='niva')return infoNIVA();
+  if(key==='tarif')return infoTarif();
+  if(key==='kontak')return infoKontak();
+}
+
+function infoEECP(){
+  addCard('<div class="card-title">💓 Terapi EECP</div>'+
+    '<div class="info-lead"><b>Enhanced External Counterpulsation</b> — terapi non-invasif untuk membantu melancarkan aliran darah ke organ vital (jantung dan otak) serta merangsang pembentukan jalur pintas alami (<i>bypass</i> alami/kolateral) tanpa tindakan pembedahan.</div>'+
+    '<div class="info-sub">Manfaat untuk jantung &amp; pembuluh darah</div>'+
+    li(['Melancarkan dan meningkatkan aliran darah dari dan ke jantung.',
+        'Merangsang pembentukan pembuluh darah baru/kolateral (<i>natural bypass</i>).',
+        'Meningkatkan suplai oksigen dan nutrisi menuju otot jantung.',
+        'Membantu mengatasi hambatan akibat plak serta menjaga kesehatan pembuluh darah.',
+        'Meningkatkan stamina, kebugaran, dan kualitas hidup secara keseluruhan.'])+
+    '<div class="info-sub">Manfaat untuk pasien pasca stroke</div>'+
+    li(['Memaksimalkan aliran darah dan oksigen ke area otak yang terdampak sumbatan.',
+        'Merangsang pembentukan sirkulasi kolateral di pembuluh darah otak.',
+        'Mendukung pemulihan fungsi saraf, termasuk perbaikan motorik, kemampuan bicara, dan kognitif.',
+        'Membantu meminimalkan risiko stroke berulang.']));
+  addBotBubble('Ingin tahu tarif atau pemeriksaan pendukungnya?',navQR('eecp').concat(waQR));
+}
+
+function infoNIVA(){
+  const p=['Aorta Compliance','Artery Compliance','Heart Pulse Width','Augmentation Index','Inflection Point','Stiffness Index','Delay Time','Systolic Amplitude','Pulse Interval','Heartbeat','Blood Pressure (BP)','Ankle Brachial Index (ABI)','Pulse Wave Velocity (PWV)','Vascular Age (VA)'];
+  addCard('<div class="card-title">🩺 Pemeriksaan NIVA</div>'+
+    '<div class="info-lead"><b>Non Invasive Vascular Analyzer</b> — skrining pembuluh darah modern tanpa rasa sakit (non-invasif), cepat dalam hitungan menit, dan bebas radiasi untuk evaluasi kondisi vaskular secara komprehensif.</div>'+
+    '<span class="info-badge">Izin Edar Kemenkes RI AKD 20501320625</span>'+
+    '<div class="info-sub">14 parameter yang diukur</div>'+
+    '<ol class="info-num">'+p.map(x=>'<li>'+x+'</li>').join('')+'</ol>'+
+    '<div class="info-sub">Indikasi / sasaran pemeriksaan</div>'+
+    li(['Individu berusia di atas 30 tahun.',
+        'Penderita tekanan darah tinggi (hipertensi) dan diabetes melitus.',
+        'Perokok aktif.',
+        'Memiliki riwayat keluarga/pribadi terkait penyakit kardiovaskular atau stroke.',
+        'Siapa saja yang ingin mendeteksi dini kesehatan sistem peredaran darah.']));
+  addBotBubble('Pemeriksaan NIVA: <b>Rp 150.000</b>. Mau lihat info lainnya?',navQR('niva').concat(waQR));
+}
+
+function infoTarif(){
+  addCard('<div class="card-title">💰 Rincian Tarif Layanan</div>'+
+    '<div class="info-sub" style="margin-top:0">Skrining awal &amp; evaluasi</div>'+
+    tr('Pemeriksaan NIVA','Rp 150.000')+
+    tr('Paket Entry Terapi<br><small style="color:var(--ink3)">Entry Treadmill &amp; Echo</small>','Rp 1.000.000')+
+    tr('Paket Exit Terapi<br><small style="color:var(--ink3)">Exit Treadmill &amp; Echo</small>','Rp 1.000.000')+
+    '<div class="info-sub">Paket sesi terapi EECP</div>'+
+    tr('1 kali kunjungan','Rp 750.000')+tr('5 kali kunjungan','Rp 3.600.000')+tr('10 kali kunjungan','Rp 7.125.000')+
+    tr('15 kali kunjungan','Rp 10.575.000')+tr('20 kali kunjungan','Rp 13.950.000')+tr('25 kali kunjungan','Rp 17.250.000')+
+    tr('30 kali kunjungan','Rp 20.475.000')+tr('35 kali kunjungan','Rp 23.625.000'));
+  addBotBubble('Untuk reservasi atau pertanyaan lebih lanjut, silakan hubungi admin kami.',navQR('tarif').concat(waQR));
+}
+
+function infoKontak(){
+  addCard('<div class="card-title">📍 Lokasi &amp; Kontak Klinik</div>'+
+    '<div class="info-lead"><b>Klinik Medika Utama</b><br>Klinik Utama Rawat Inap</div>'+
+    tr('Alamat','Jl. Soekarno Hatta, Ds. Darungan, Kec. Pare, Kab. Kediri, Jawa Timur')+
+    tr('Telepon','<a class="info-link" href="tel:+623543104687">(0354) 3104687</a>')+
+    tr('WhatsApp','<a class="info-link" href="https://wa.me/'+WA1+'" target="_blank">0851 1311 8749</a><br><a class="info-link" href="https://wa.me/'+WA2+'" target="_blank">0822 1812 9966</a>')+
+    tr('Situs Web','<a class="info-link" href="https://medikautama.klinik" target="_blank" rel="noopener">medikautama.klinik</a>')+
+    tr('Instagram','<a class="info-link" href="https://instagram.com/medikautama.klinik" target="_blank" rel="noopener">@medikautama.klinik</a>')+
+    tr('Facebook','Klinik Medika Utama'));
+  addBotBubble('Ada yang ingin ditanyakan lagi?',navQR('kontak').concat(waQR));
+}
 </script>
 </body>
 </html>
