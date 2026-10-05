@@ -971,10 +971,20 @@ const waQR=[{label:'💬 Tanya via WhatsApp',cls:'gold',fn:()=>window.open('http
 
 function routeInfo(text){
   const t=text.toLowerCase();
-  let key=null;
-  if(/\bniva\b|non.?invasive vascular|vascular analyzer/.test(t))key=/tarif|harga|biaya|berapa/.test(t)?'tarif':'niva';
-  else if(/\beecp\b|counterpulsation|bypass alami/.test(t))key=/tarif|harga|biaya|berapa|paket/.test(t)?'tarif':'eecp';
+  let key=null,nama='';
+  if(/\bniva\b|non.?invasive vascular|vascular analyzer/.test(t)){key='niva';nama='pemeriksaan NIVA';}
+  else if(/\beecp\b|counterpulsation|bypass alami/.test(t)){key='eecp';nama='terapi EECP';}
   if(!key)return false;
+  // 1) Pertanyaan tarif -> kartu tarif
+  if(/tarif|harga|biaya|berapa|paket/.test(t)){showInfo('tarif');return true;}
+  // 2) Pertanyaan ketersediaan -> jawab langsung dulu
+  if(/\b(ada|tersedia|bisa|melayani|menyediakan|buka|layani|sedia)\b/.test(t)&&!/\b(apa itu|manfaat|fungsi|cara kerja)\b/.test(t)){
+    const info=key==='niva'?'Pemeriksaan NIVA sekitar hitungan menit, tanpa rasa sakit, dan bebas radiasi.':'EECP adalah terapi non-invasif tanpa pembedahan, tersedia dalam paket 1 sampai 35 kali kunjungan.';
+    addBotBubble('Ya, <b>'+nama+'</b> tersedia di <b>Klinik Medika Utama</b>. '+info+'<br><br>Mau lihat informasi selengkapnya?',
+      [{label:'📖 Penjelasan lengkap',fn:()=>showInfo(key)},{label:'💰 Tarif',fn:()=>showInfo('tarif')},{label:'📍 Lokasi & Kontak',fn:()=>showInfo('kontak')}].concat(waQR));
+    return true;
+  }
+  // 3) Selain itu (apa itu, manfaat, nama saja) -> kartu penjelasan
   showInfo(key);return true;
 }
 
